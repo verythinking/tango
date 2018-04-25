@@ -5,6 +5,7 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from registration.backends.simple.views import RegistrationView
 
 from datetime import datetime
 
@@ -181,3 +182,9 @@ def about(request):
 @login_required
 def restricted(request):
     return HttpResponse('Since you\'re logged in, you can see this text!')
+
+
+class CRegistrationView(RegistrationView):
+
+    def get_success_url(self, request, user):
+        return '/rango/'
