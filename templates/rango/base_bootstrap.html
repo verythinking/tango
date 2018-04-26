@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
 {% load staticfiles %}
+{% load rango_extras %}
 
 <html lang="en">
 <head>
@@ -36,12 +37,6 @@
                 <a class="nav-link" href="{% url 'add_category' %}">Add a New Category</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'profile' user.username %}">Profile</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'list_profiles' %}">List Profiles</a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link" href="{% url 'auth_logout' %}?next=/rango/">Logout</a>
             </li>
             {% else %}
@@ -69,6 +64,9 @@
 	            </ul>
                 <hr />
 	            <div id="cats">
+                    {% block side_block %}
+                        {% get_category_list %}
+                    {% endblock %}
 	            </div>
             </div>
             <div class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 main">
